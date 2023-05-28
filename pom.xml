@@ -194,8 +194,27 @@
 					</properties>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
+
+
+
+
 
 	<profiles>
 		<profile>
@@ -211,7 +230,5 @@
 			</properties>
 		</profile>
 	</profiles>
-
-
 
 </project>
