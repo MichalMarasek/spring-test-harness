@@ -36,6 +36,7 @@
 		<selenium-server.version>3.141.59</selenium-server.version>
 		<maven-remote-resources-plugin.version>1.7.0</maven-remote-resources-plugin.version>
 		<spring-boot-maven-plugin.version>3.1.0</spring-boot-maven-plugin.version>
+		<maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -111,6 +112,11 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>${maven-surefire-plugin.version}</version>
+		</dependency>
 		<!--UI automation-->
 		<dependency>
 			<groupId>com.codeborne</groupId>
@@ -149,10 +155,16 @@
 			<version>${cucumber-testng.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>${maven-surefire-plugin.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>gherkin</artifactId>
 			<version>${gherkin.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -167,6 +179,19 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<properties>
+						<property>
+							<!-- Set the number of tests executed in parallel-->
+							<name>dataproviderthreadcount</name>
+							<value>20</value>
+						</property>
+					</properties>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -186,5 +211,7 @@
 			</properties>
 		</profile>
 	</profiles>
+
+
 
 </project>
