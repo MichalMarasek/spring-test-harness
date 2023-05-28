@@ -1,4 +1,4 @@
-package com.maras.springtestharness.utility;
+package com.maras.springtestharness.utility.constants;
 
 public class Constants {
 

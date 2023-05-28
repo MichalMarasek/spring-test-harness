@@ -155,11 +155,6 @@
 			<version>${cucumber-testng.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-surefire-plugin</artifactId>
-			<version>${maven-surefire-plugin.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>gherkin</artifactId>
 			<version>${gherkin.version}</version>
@@ -168,7 +163,33 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-remote-resources-plugin</artifactId>-->
+<!--				<version>${maven-remote-resources-plugin.version}</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>bundle</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--				<configuration>-->
+<!--					<includes>-->
+<!--						<include>**/extent.properties</include>-->
+<!--						<include>**/logback.xml</include>-->
+<!--						<include>**/allure.properties</include>-->
+<!--						<include>**/extent.xml</include>-->
+<!--					</includes>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

@@ -1,4 +1,4 @@
-package com.maras.springtestharness.utility;
+package com.maras.springtestharness.utility.properties;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
