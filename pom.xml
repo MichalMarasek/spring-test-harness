@@ -12,9 +12,30 @@
 	<artifactId>spring-test-harness</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-test-harness</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Example of modern test harness for Spring Boot</description>
 	<properties>
+		<activeProfile>dev</activeProfile>
 		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<json.version>20220924</json.version>
+		<rest-assured.version>5.2.0</rest-assured.version>
+		<cucumber-java.version>7.8.1</cucumber-java.version>
+		<cucumber-spring.version>7.8.1</cucumber-spring.version>
+		<cucumber-testng.version>7.8.1</cucumber-testng.version>
+		<gherkin.version>24.1.0</gherkin.version>
+		<commons-io.version>2.11.0</commons-io.version>
+		<assertj-core.version>3.23.1</assertj-core.version>
+		<extentreports-cucumber7-adapter.version>1.9.0</extentreports-cucumber7-adapter.version>
+		<allure-cucumber7-jvm.version>2.20.0</allure-cucumber7-jvm.version>
+		<ngwebdriver.version>1.2</ngwebdriver.version>
+		<log4j.version>1.2.17</log4j.version>
+		<allure.version>2.20.0</allure.version>
+		<selenide.version>6.12.0</selenide.version>
+		<selenium-java.version>4.6.0</selenium-java.version>
+		<selenium-server.version>3.141.59</selenium-server.version>
+		<maven-remote-resources-plugin.version>1.7.0</maven-remote-resources-plugin.version>
+		<spring-boot-maven-plugin.version>3.1.0</spring-boot-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -29,16 +50,108 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<version>${spring-boot-maven-plugin.version}</version>
+		</dependency>
+		<!--Databases-->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
+		<!--Auto generated getters and setters-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!--test dependencies-->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>tech.grasshopper</groupId>
+			<artifactId>extentreports-cucumber7-adapter</artifactId>
+			<version>${extentreports-cucumber7-adapter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-cucumber7-jvm</artifactId>
+			<version>${allure.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.paulhammant</groupId>
+			<artifactId>ngwebdriver</artifactId>
+			<version>${ngwebdriver.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!--UI automation-->
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>selenide</artifactId>
+			<version>${selenide.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium-java.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>${selenium-server.version}</version>
+		</dependency>
+		<!-- Rest Cucumber dependencies-->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest-assured.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber-java.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber-spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber-testng.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>gherkin</artifactId>
+			<version>${gherkin.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -58,5 +171,20 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<activatedProperties>dev</activatedProperties>
+			</properties>
+		</profile>
+		<profile>
+			<id>cicd</id>
+			<properties>
+				<activatedProperties>cicd</activatedProperties>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
