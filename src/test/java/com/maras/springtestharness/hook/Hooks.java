@@ -1,5 +1,6 @@
 package com.maras.springtestharness.hook;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.maras.springtestharness.utility.hook.HookUtility;
 import com.maras.springtestharness.utility.log.LogManager;
@@ -22,6 +23,8 @@ public class Hooks {
     public void beforeScenario(Scenario scenario) throws MalformedURLException {
         String filename = scenario.getName().replaceAll("\\s+", "_");
         System.out.println(filename);
+        System.setProperty("selenide.browser", "chrome");
+        Configuration.holdBrowserOpen=false;
 //        logManager.createNewLogger(filename);
     }
 
