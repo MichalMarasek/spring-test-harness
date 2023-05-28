@@ -7,3 +7,7 @@ Rest Assured (API testing)
 Selenide (UI testing)
 Allure Reports
 Extent Reports
+
+to generate allure reports use
+
+allure serve .\target\allure-results
