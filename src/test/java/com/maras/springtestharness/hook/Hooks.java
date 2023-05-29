@@ -5,6 +5,7 @@ import com.maras.springtestharness.config.HarnessAbstractTestDefinition;
 import com.maras.springtestharness.step.GoogleSearchStepDefinitions;
 import com.maras.springtestharness.utility.properties.ApplicationProperties;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.spring.CucumberContextConfiguration;
@@ -14,6 +15,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.ScopeNotActiveException;
 
 import java.io.ByteArrayInputStream;
 import java.net.MalformedURLException;
@@ -41,9 +43,18 @@ public class Hooks extends HarnessAbstractTestDefinition {
 
     }
 
+    @AfterStep
+    public void afterStep(Scenario scenario) {
+        attachScreenshot(scenario);
+    }
+
     @After
     public void afterScenario(Scenario scenario) {
     //things to do after scenario ended
+        attachScreenshot(scenario);
+    }
+
+    public void attachScreenshot(Scenario scenario){
         //by attaching screenshot to the scenario, screenshot is added to both Extent and Allure report
         final byte[] screenshot = ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
         scenario.attach(screenshot, "image/png", scenario.getName());
