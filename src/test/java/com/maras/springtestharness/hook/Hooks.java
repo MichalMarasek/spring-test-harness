@@ -1,9 +1,9 @@
 package com.maras.springtestharness.hook;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
+import com.maras.springtestharness.config.HarnessAbstractTestDefinition;
 import com.maras.springtestharness.utility.hook.HookUtility;
-import com.maras.springtestharness.utility.log.LogManager;
+import com.maras.springtestharness.utility.properties.ApplicationProperties;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -13,11 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.net.MalformedURLException;
 
 @CucumberContextConfiguration
-public class Hooks {
+public class Hooks extends HarnessAbstractTestDefinition {
 //    @Autowired
 //    private LogManager logManager;
+    @Autowired
+    private HookUtility hookUtility;
+
 //    @Autowired
-//    private HookUtility hookUtility;
+//    private ApplicationProperties applicationProperties;
 
     @Before
     public void beforeScenario(Scenario scenario) throws MalformedURLException {

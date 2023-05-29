@@ -12,6 +12,10 @@ import org.openqa.selenium.By;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+/**
+ * Step Definition Class
+ *
+ */
 public class GoogleImageSearchStepDefinitions {
     @When("click {string} link")
     public void chooseImagesAsSearchTarget(String linkText) {

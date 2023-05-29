@@ -13,7 +13,9 @@ import ch.qos.logback.core.filter.EvaluatorFilter;
 import ch.qos.logback.core.pattern.color.ANSIConstants;
 import ch.qos.logback.core.pattern.color.ForegroundCompositeConverterBase;
 import ch.qos.logback.core.status.NopStatusListener;
+import com.maras.springtestharness.utility.hook.HookUtility;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
