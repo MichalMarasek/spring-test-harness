@@ -3,7 +3,7 @@
     <configuration>
         <!-- report theme -->
         <!-- standard, dark -->
-        <documentTitle>Test Framework</documentTitle>
+        <documentTitle>Test Report</documentTitle>
 
         <!-- document encoding -->
         <!-- defaults to UTF-8 -->
