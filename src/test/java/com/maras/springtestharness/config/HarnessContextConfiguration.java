@@ -8,7 +8,6 @@ import org.springframework.retry.annotation.EnableRetry;
 @EnableRetry
 @Configuration
 @ComponentScan({
-        "com.maras.springtestharness",
         "com.maras.springtestharness"
 })
 @PropertySource("classpath:/application.properties")
