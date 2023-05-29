@@ -6,15 +6,10 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.maras.springtestharness.page.GoogleSearchPage;
-import org.openqa.selenium.By;
 
-import com.codeborne.selenide.Configuration;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -33,8 +28,7 @@ public class GoogleSearchStepDefinitions {
     private GoogleSearchPage googleSearchPage = page(GoogleSearchPage.class);
     @Given("an open browser with google.com")
     public void openGoogleSearch() {
-        open("https://google.com/ncr");
-        sleep(500);
+        googleSearchPage.openPage("https://google.com/ncr");
         if ($(byText("Accept all")).isDisplayed()) {
             $(byText("Accept all")).shouldBe(visible).click();
             $(byText("Accept all")).should(disappear);

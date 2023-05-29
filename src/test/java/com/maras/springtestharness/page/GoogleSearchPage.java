@@ -7,6 +7,10 @@ import org.openqa.selenium.support.How;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -27,5 +31,20 @@ public class GoogleSearchPage {
     @FindBy(how = How.CSS, using = "#res .g")
     public ElementsCollection searchResults;
 
+    @FindBy(how = How.CSS, using = ".rg_i")
+    public ElementsCollection imageSearchResults;
+
+    public void openPage(String url) {
+        logger.info("Search for: " + url + " in google");
+        open(url);
+    }
+
+    public void clickByLinkText(String linkText) {
+        $(byText(linkText)).click();
+    }
+
+    public SelenideElement findByText(String text) {
+        return $(byText("Accept all"));
+    }
 
 }
