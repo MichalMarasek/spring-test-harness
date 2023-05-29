@@ -8,12 +8,14 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.spring.CucumberContextConfiguration;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.ByteArrayInputStream;
 import java.net.MalformedURLException;
 
 import static com.codeborne.selenide.Selenide.screenshot;
@@ -42,8 +44,13 @@ public class Hooks extends HarnessAbstractTestDefinition {
     @After
     public void afterScenario(Scenario scenario) {
     //things to do after scenario ended
+        //by attaching screenshot to the scenario, screenshot is added to both Extent and Allure report
         final byte[] screenshot = ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
         scenario.attach(screenshot, "image/png", scenario.getName());
+        //you can also attach screenshots to Allure report manually using below line
+        //if you uncomment this, you will see screenshot with text "Test Finished" in your allure report
+//        Allure.addAttachment("Test finished", new ByteArrayInputStream(((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES)));
+
     }
 
 }
