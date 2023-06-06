@@ -1,15 +1,22 @@
-Feature: Google text search
+Feature: RestAPI test using restassured
 
-  Scenario: user can search any keyword 2
+  Scenario: Check status code for specific customer
 
-    Given an open browser with google.com
-    When a keyword "selenide" is entered in input field
-    Then at least top 1 matches should be shown
-    Then the first one should contain "selenide.org"
+    Given using this url "http://demo.guru99.com/V4/sinkministatement.php"
+    When Customer ID is "68195" password is "1234!" and account no is "1"
+    Then Status code is 200
+    And Print response time
 
-  Scenario: user search for price 2
 
-    Given an open browser with google.com
-    When a keyword "selenide price" is entered in input field
-    Then at least top 1 matches should be shown
-    Then the first one should contain "price"
+  Scenario: Check response content type
+
+    Given using this url "http://demo.guru99.com/V4/sinkministatement.php"
+    Then Response content type is "text/html; charset=UTF-8"
+    And Print response time
+
+  Scenario: Check total value amount for specific customer
+
+    Given using this url "http://demo.guru99.com/V4/sinkministatement.php"
+    When Customer ID is "68195" password is "1234!" and account no is "1"
+    Then Total value amount is 1015
+    And Print response time

@@ -56,8 +56,14 @@ public class Hooks extends HarnessAbstractTestDefinition {
 
     public void attachScreenshot(Scenario scenario){
         //by attaching screenshot to the scenario, screenshot is added to both Extent and Allure report
-        final byte[] screenshot = ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
-        scenario.attach(screenshot, "image/png", scenario.getName());
+        try {
+            final byte[] screenshot = ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", scenario.getName());
+        } catch (IllegalStateException e) {
+            System.out.println("In Rest Api tests there are no webdrivers, so we catch this exception");
+        }
+
+
         //you can also attach screenshots to Allure report manually using below line
         //if you uncomment this, you will see screenshot with text "Test Finished" in your allure report
 //        Allure.addAttachment("Test finished", new ByteArrayInputStream(((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES)));

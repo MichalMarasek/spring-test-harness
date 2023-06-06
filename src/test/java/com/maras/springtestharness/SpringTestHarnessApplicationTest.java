@@ -8,7 +8,7 @@ import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 @CucumberOptions(
 		features = {
-				"src/test/resources/feature/"
+				"src/test/resources/feature/RestApiTest.feature"
 		},
 		plugin = {
 				"pretty",
